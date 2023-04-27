@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Age</title>
+</head>
+<body>
+    <script>
+        let birthday
+        let correctFormat = false
+        const regex = /^\d{4}-{1}[0-1]{1}\d{1}-{1}[0-3]{1}\d{1}$/
+
+        while(!correctFormat) {
+            correctFormat = regex.test( birthday = 
+                window.prompt("Please enter your birthday(yyyy-mm-dd):")
+            )
+        }
+
+        const [birthYear, birthMonth, birthDay] = birthday.split('-').map(date => parseInt(date))
+
+        const now = new Date()
+        const [nowYear, nowMonth, nowDay] = [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+        
+        const yearPrecession = nowYear - birthYear
+
+        const monthDayPrecession =
+             ( nowMonth < birthMonth ) || ( nowMonth === birthMonth && nowDay < birthDay )
+
+        const age = yearPrecession - monthDayPrecession
+
+        window.alert(age >= 0 ? age : "You're not born yet!")
+
+    </script>
+</body>
+</html>

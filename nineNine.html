@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nine Nine Table</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    #root {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    table, td {
+        border: 2px solid steelblue;
+    }
+    
+    td {
+        padding: 1rem;
+        font-size: 1.5rem;
+    }
+</style>
+<body>
+    <div id="root"></div>
+    <script>
+        
+        const createEl = element => document.createElement(element)
+        const root = document.getElementById('root')
+
+        const table = createEl('table')
+        const tbody = createEl('tbody')
+        table.appendChild(tbody)
+
+        const tr = createEl('tr')
+
+        for(let i = 1; i < 10; i ++) {
+            const td = createEl('td')
+            for(let j = 1; j < 10; j ++) {
+                const div = createEl('div')
+                div.textContent = `${i} x ${j} = ${i * j}`
+                td.appendChild(div)
+            }
+            tr.appendChild(td)
+        }
+
+        table.appendChild(tr)
+        root.appendChild(table)
+
+    </script>
+</body>
+</html>

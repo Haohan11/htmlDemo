@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+</head>
+<body>
+    <script>
+        const theNumber = Math.floor( Math.random() * 100 )
+        const numReg = /^\d+$/
+        
+        const mainMessage = 'Please enter a guess number (1-100), or enter 0 to exit the game:'
+        let promptMessage = mainMessage
+        let guessNumber
+
+        while (true) {
+            if(!numReg.test( guessNumber = parseInt(window.prompt(promptMessage)) )) {
+                promptMessage = mainMessage
+                continue
+            }
+
+            if(guessNumber === 0) break
+
+            if(guessNumber === theNumber) {
+                window.alert(`You won the game!! The number is ${theNumber}.`)
+                break
+            }
+
+            promptMessage = 
+                `The guessed number is too ${guessNumber > theNumber ? 'big' : 'small'}!\n` 
+                + mainMessage
+        }
+    </script>
+</body>
+</html>
