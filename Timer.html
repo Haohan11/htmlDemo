@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Clock</title>
+</head>
+<body>
+
+    <button>Start</button>
+    <p id="clock">
+        <span id="minutes">00</span>
+        :
+        <span id="seconds">00</span>
+    </p>
+
+    <script>
+        const [button, clock, seconds, minutes] = [
+            document.querySelector('button'),
+            document.getElementById('clock'),
+            document.getElementById('seconds'),
+            document.getElementById('minutes'),
+        ]
+
+        let timer
+
+        button.addEventListener('click', event => {
+
+            if(button.textContent === 'Stop') {
+                window.clearInterval(timer)
+                button.textContent = 'Start'
+                return
+            }
+
+            button.textContent = 'Stop'
+
+            timer = window.setInterval(() => {
+                let second = parseInt(seconds.textContent) + 1
+
+                if(second < 60) {
+                    seconds.textContent = second < 10 ? '0' + second : second
+                    return
+                }
+
+                let minute = parseInt(minutes.textContent) + 1
+
+                if(minute < 60) {
+                    minutes.textContent = minute < 10 ? '0' + minute : minute
+                    seconds.textContent = '0' + (second - 60 + '')
+                    return
+                }
+
+                seconds.textContent = minutes.textContent = '00'
+
+            }, 1000)
+        })
+
+    </script>
+</body>
+</html>

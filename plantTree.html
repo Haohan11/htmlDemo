@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Tree</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #333;
+            color: white;
+        }
+
+        div {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const numReg = /^\d+$/
+        const maxHeight = 100
+        let height
+
+        let result = numReg.test( height = window.prompt(
+            `How tall do you want the tree? ( Max for ${ maxHeight } )`
+        ))
+        
+        while(!result) {
+            result = numReg.test( height = window.prompt(
+                `Please enter a number ( Positive integer and max for ${ maxHeight } ):`
+            ))
+        }
+        
+        (height = parseInt(height)) > maxHeight && (height = maxHeight)
+
+        const docFragment = new DocumentFragment()
+        let leaf
+
+        for( let i = 1, max = height + 2; i <= max; i ++ ) {
+            let divElement = document.createElement('div')
+
+            leaf = (i > height || i === 1) ? "^" : leaf + "^^"
+
+            divElement.textContent = leaf
+            divElement.style.color = i > height ? 'brown' : 'green'
+
+            docFragment.appendChild(divElement)
+        }
+
+        document.querySelector('body').appendChild(docFragment)
+    </script>
+</body>
+</html>

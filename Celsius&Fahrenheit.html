@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celsius and Fahrenheit</title>
+</head>
+<body>
+    <script>
+        function TempTransfer(temp, unit) {
+            return window.alert(
+                `The temperature ${temp + unit} is ${
+                    unit === 'F' ? 
+                    Math.round(((temp - 32) * 5 / 9) * 10) / 10
+                    :
+                    Math.round((temp * 9 / 5 + 32) * 10) / 10}${
+                        unit === 'F' ? 'C' : 'F'
+                    }`
+            )
+        }
+        
+        const regex = /^\d+$/
+        let temp, unit
+        let isNumber, correctUnit = false
+        
+        while(!isNumber) {
+            isNumber = regex.test(temp = window.prompt("Please enter temperature"))
+        }
+
+        while(!correctUnit) {
+            unit = window.prompt("Please enter F or C").toUpperCase()
+            correctUnit = unit === 'F' || unit === 'C'
+        }
+
+        TempTransfer(temp, unit)
+    </script>
+</body>
+</html>

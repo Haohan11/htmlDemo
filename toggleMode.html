@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Mode</title>
+
+    <style>
+
+        [data-theme=dark] {
+            --main-background-color: #333;
+        }
+
+        [data-theme=light] {
+            --main-background-color: wheat;
+        }
+        
+        body {
+            background-color: var(--main-background-color);
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <button type="button">TOGGLE</button>
+
+    <script>
+        const htmlEle = document.querySelector('html')
+        const switchBtn = document.querySelector('button')
+
+        switchBtn.addEventListener('click', () => {
+            htmlEle.dataset.theme = 
+                htmlEle.dataset.theme === 'dark' ? 'light' : 'dark'
+        })
+    </script>
+</body>
+
+</html>
